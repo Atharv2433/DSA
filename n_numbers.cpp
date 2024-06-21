@@ -7,7 +7,7 @@ void fun(int i,int n){
     {
         cout<<i<<endl;
     }
-    fun(i+1,n);
+    fun(i,n-1);
 }
 int main(){
     int n;
