@@ -14,10 +14,10 @@ int main(){
     
     cout << "Enter the edges (pairs of vertices): " << endl;
     for(int i = 0; i < m; ++i){
-        int v1, v2;
-        cin >> v1 >> v2;
-        graph[v1][v2] = 1;
-        graph[v2][v1] = 1;
+        int v1, v2,weight;
+        cin >> v1 >> v2 >> weight;
+        graph[v1][v2] = weight;
+        graph[v2][v1] = weight;
     }
     
     cout << "Adjacency matrix of the graph: " << endl;
@@ -34,3 +34,33 @@ int main(){
 
 //space = n^2
 //time more if array is big
+
+#include<iostream>
+using namespace std;
+
+int n=1e3+10;
+int graph[n][n];
+
+void create_graph(){
+    cout<<"Enter vertices v1 & v2";
+    cin>>v1>>v2;
+    graph[v1][v2]=1;
+    graph[v1][v2]=1;
+}
+int vertex[n];
+int dfs(int vertex)
+{
+    vertex[vertex]==true
+    for(int child:)
+}
+int main(){
+    int n,m;
+    for(int i=0;i<m;i++){
+        create_graph();
+    }
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cout<<graph[i][j];
+        }
+    }
+}
