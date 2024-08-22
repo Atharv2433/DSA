@@ -1,17 +1,16 @@
 import java.util.HashMap;
 public class MAx_subarray{
-    public static int count_the_len(int arr[] , int sum){
+    public static int count_the_len(int arr[] , int n){
         
         HashMap<Integer,Integer> mpp = new HashMap<>();
 
-        int maxi = 0;        
-        
-        int sum_1 =0;
+        int maxi = 0;             
+        int sum_1 = 0;
 
-        for(int i=0; i<arr.length;i++){
+        for(int i=0; i<n;i++){
             sum_1 += arr[i];
 
-            if(sum_1 == sum){
+            if(sum_1 == 0){
                 maxi = i+1;
             }
             else{
@@ -27,7 +26,9 @@ public class MAx_subarray{
     }
     public static void main(String[] args){
         int arr[] = {1,2,3,4};
-        int sum = 6;
-        System.out.println(count_the_len(arr,sum));
+        int n = arr.length;
+        System.out.println(count_the_len(arr,n));
     }
 }
+
+// 
