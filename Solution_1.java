@@ -2,6 +2,7 @@ public class Solution_1{
     public static void even_odd(int n){
         int bitmask = 1;
         if((n & bitmask) == 0){
+            
             System.out.println("Even Number ");
         }
         else{
