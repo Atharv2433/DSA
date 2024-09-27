@@ -15,6 +15,8 @@ Node* construct()
 {
     string rootData;
     cout << "Enter the name here-\n";
+
+    
     cin >> rootData;
     Node* root = new Node(rootData);
 
