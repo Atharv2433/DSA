@@ -11,6 +11,9 @@ struct Node
     }
 };
 
+
+
+
 Node* construct()
 {
     string rootData;
