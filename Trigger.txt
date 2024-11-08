@@ -1,0 +1,77 @@
+ CREATE TABLE library (
+  2      bno NUMBER(5),
+  3      bname VARCHAR2(40),
+  4      author VARCHAR2(20),
+  5      allowed_days NUMBER(5)
+  6  );
+
+ CREATE TABLE library_audit (
+        bno NUMBER(5),
+        old_all_days NUMBER(5),
+        new_all_days NUMBER(5),
+        action VARCHAR2(10),  -- 'UPDATE' or 'DELETE'
+        action_time TIMESTAMP
+    );
+
+ INSERT INTO library VALUES (1, 'Database Systems', 'Yash Marane', 10);
+
+INSERT INTO library VALUES (2, 'System Programming', 'Abhishek', 20);
+
+ INSERT INTO library VALUES (3, 'Computer Network', 'Kapil', 18);
+
+ INSERT INTO library VALUES (4, 'Project Management', 'Hariom', 24);
+
+ INSERT INTO library VALUES (5, 'Python for Data Analysis', 'Tanmay', 12);
+
+ CREATE OR REPLACE TRIGGER before_update_library
+    BEFORE UPDATE ON library
+    FOR EACH ROW
+    BEGIN
+        -- Log the old and new values before the update
+        INSERT INTO library_audit (bno, old_all_days, new_all_days, action, action_time)
+        VALUES (:OLD.bno, :OLD.allowed_days, :NEW.allowed_days, 'UPDATE', SYSDATE);
+    END;
+    /
+
+ CREATE OR REPLACE TRIGGER after_update_library
+    AFTER UPDATE ON library
+    FOR EACH ROW
+    BEGIN
+        -- Log the updated values after the update operation
+        INSERT INTO library_audit (bno, old_all_days, new_all_days, action, action_time)
+        VALUES (:OLD.bno, :OLD.allowed_days, :NEW.allowed_days, 'UPDATE', SYSDATE);
+    END;
+    /
+
+
+ CREATE OR REPLACE TRIGGER before_delete_library
+   BEFORE DELETE ON library
+    FOR EACH ROW
+    BEGIN
+        -- Log the old values (before deletion)
+        INSERT INTO library_audit (bno, old_all_days, new_all_days, action, action_time)
+        VALUES (:OLD.bno, :OLD.allowed_days, NULL, 'DELETE', SYSDATE);
+    END;
+   /
+
+
+ CREATE OR REPLACE TRIGGER after_delete_library
+    AFTER DELETE ON library
+    FOR EACH ROW
+    BEGIN
+        -- Log the details after deletion
+        INSERT INTO library_audit (bno, old_all_days, new_all_days, action, action_time)
+        VALUES (:OLD.bno, :OLD.allowed_days, NULL, 'DELETE', SYSDATE);
+    END;
+    /
+
+ UPDATE library SET allowed_days = 15 WHERE bno = 1;
+ UPDATE library SET allowed_days = 25 WHERE bno = 2;
+
+ DELETE FROM library WHERE bno = 5;
+
+ COMMIT;
+
+ SELECT * FROM library;
+
+       SELECT * FROM library_audit;
