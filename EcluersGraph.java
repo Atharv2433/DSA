@@ -3,6 +3,7 @@ package Ecluers;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class EcluersGraph {
 
     ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
