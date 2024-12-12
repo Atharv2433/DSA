@@ -14,6 +14,9 @@ struct Node
     }
 };
 
+
+
+
 void traversal(Node* root) 
 {
     if (root == NULL)
