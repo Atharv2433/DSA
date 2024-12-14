@@ -15,6 +15,8 @@ public class Bit {
             }
         }
 
+
+        
         System.out.println(x); // Output the final value of x
         sc.close(); // Close the scanner
     }
