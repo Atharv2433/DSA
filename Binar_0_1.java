@@ -9,6 +9,9 @@ public class Binar_0_1{
             add_str(n-1,1,s+'1');
         }
     }
+
+
+    
     public static void main(String[] args){
         int n = 3;
         String s = "";
